@@ -110,7 +110,9 @@ const Welcome = () => {
             Treasures!
           </Text>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+          <TouchableOpacity 
+          onPress={() => navigation.navigate("Signup")}
+          >
             <LinearGradient
               colors={["#f6aa1c", "#f86624"]}
               start={{ x: 0, y: 0 }}

@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
@@ -14,20 +15,38 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import scaleFontSize from "../utils/responsivefonts";
 import { useNavigation } from "@react-navigation/native";
+import Signup_an_account from "../api/auth";
 
 const screenheight = Dimensions.get("window").height;
 const screenwidth = Dimensions.get("window").width;
 
 const Signup = () => {
   const navigation = useNavigation();
-  const [name, setName] = useState("");
+
+  const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSignup = () => {
-    // Handle signup logic here
-    console.log("Signup attempted");
+  const handleSignup = async () => {
+    try {
+      const new_user_account = await Signup_an_account(
+        username,
+        firstname,
+        lastname,
+        email,
+        password
+      );
+      Alert.alert("Success", "Account Created!");
+      navigation.navigate("Login");
+    } catch (err) {
+      console.log("SIGNUP ERROR →", err);
+      const message =
+        err.email?.[0] || err.username?.[0] || err.error || "Signup failed";
+
+      Alert.alert("Issue Occurred", message);
+    }
   };
 
   return (
@@ -104,7 +123,7 @@ const Signup = () => {
                     }}
                     className="opacity-80"
                   >
-                    Full Name
+                    Username
                   </Text>
                   <TextInput
                     style={{
@@ -114,10 +133,60 @@ const Signup = () => {
                       fontSize: scaleFontSize(15),
                     }}
                     className="bg-white border border-gray-300 rounded-lg"
-                    placeholder="Enter your name"
+                    placeholder="Enter your username"
                     placeholderTextColor="#999"
-                    value={name}
-                    onChangeText={setName}
+                    value={username}
+                    onChangeText={setUsername}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={{
+                      fontFamily: "QuicksandSemiBold",
+                      fontSize: scaleFontSize(14),
+                      marginBottom: screenheight * 0.008,
+                    }}
+                    className="opacity-80"
+                  >
+                    First Name
+                  </Text>
+                  <TextInput
+                    style={{
+                      paddingHorizontal: screenwidth * 0.04,
+                      paddingVertical: screenheight * 0.015,
+                      fontFamily: "Quicksandmedium",
+                      fontSize: scaleFontSize(15),
+                    }}
+                    className="bg-white border border-gray-300 rounded-lg"
+                    placeholder="Enter your First Name"
+                    placeholderTextColor="#999"
+                    value={firstname}
+                    onChangeText={setFirstname}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={{
+                      fontFamily: "QuicksandSemiBold",
+                      fontSize: scaleFontSize(14),
+                      marginBottom: screenheight * 0.008,
+                    }}
+                    className="opacity-80"
+                  >
+                    Last Name
+                  </Text>
+                  <TextInput
+                    style={{
+                      paddingHorizontal: screenwidth * 0.04,
+                      paddingVertical: screenheight * 0.015,
+                      fontFamily: "Quicksandmedium",
+                      fontSize: scaleFontSize(15),
+                    }}
+                    className="bg-white border border-gray-300 rounded-lg"
+                    placeholder="Enter your Last Name"
+                    placeholderTextColor="#999"
+                    value={lastname}
+                    onChangeText={setLastname}
                   />
                 </View>
 
@@ -172,33 +241,6 @@ const Signup = () => {
                     placeholderTextColor="#999"
                     value={password}
                     onChangeText={setPassword}
-                    secureTextEntry
-                  />
-                </View>
-
-                <View>
-                  <Text
-                    style={{
-                      fontFamily: "QuicksandSemiBold",
-                      fontSize: scaleFontSize(14),
-                      marginBottom: screenheight * 0.008,
-                    }}
-                    className="opacity-80"
-                  >
-                    Confirm Password
-                  </Text>
-                  <TextInput
-                    style={{
-                      paddingHorizontal: screenwidth * 0.04,
-                      paddingVertical: screenheight * 0.015,
-                      fontFamily: "Quicksandmedium",
-                      fontSize: scaleFontSize(15),
-                    }}
-                    className="bg-white border border-gray-300 rounded-lg"
-                    placeholder="Confirm your password"
-                    placeholderTextColor="#999"
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
                     secureTextEntry
                   />
                 </View>
