@@ -8,24 +8,29 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import scaleFontSize from "../utils/responsivefonts";
-import { useNavigation } from "@react-navigation/native";
+import Login_an_account from '../api/loginuserverify'
 
 const screenheight = Dimensions.get("window").height;
 const screenwidth = Dimensions.get("window").width;
 
-const Login = () => {
-  const navigation = useNavigation();
+const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log("Login attempted");
+  const handleLogin = async () => {
+    try{
+        const res = await Login_an_account(email, password)
+        Alert.alert('Welcome', res.Message)
+        navigation.navigate('MyTabs')
+    } catch (err) {
+
+    }
   };
 
   return (

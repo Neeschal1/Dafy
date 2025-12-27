@@ -1,5 +1,7 @@
 from pathlib import Path
 from env_config import Config
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+from .base import *
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -17,6 +19,7 @@ INSTALLED_APPS = [
     # Additional Apps involved
     'rest_framework',
     'apps.accounts',
+    'apps.products',
     'corsheaders',
 ]
 
@@ -80,3 +83,6 @@ USE_TZ = True
 
 # Static files 
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -12,7 +12,7 @@ const Signup_an_account = async (
   password
 ) => {
   try {
-    const new_account = await axios.post(`${root_api}signup/`, {
+    const new_account = await axios.post(`${root_api}accounts/`, {
       username,
       first_name,
       last_name,
@@ -25,4 +25,4 @@ const Signup_an_account = async (
   }
 };
 
-export default Signup_an_account
+export default Signup_an_account;

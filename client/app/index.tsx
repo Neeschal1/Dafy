@@ -4,6 +4,7 @@ import Stacknavigation from '../src/constants/stacknavigation'
 import { customFonts } from "../src/utils/fonts";
 import { useFonts } from "expo-font";
 import '../global.css'
+import { useNavigation } from "expo-router";
 
 const Index = () => {
   const [fontsLoaded] = useFonts(customFonts);

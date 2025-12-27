@@ -18,8 +18,7 @@ const animation = require("../assets/lottie/shopping girl.json");
 const screenheight = Dimensions.get("window").height;
 const screenwidth = Dimensions.get("window").width;
 
-const Welcome = () => {
-  const navigation = useNavigation();
+const Welcome = ({navigation}) => {
   const [exitModalVisible, setExitModalVisible] = useState(false);
 
   useEffect(() => {

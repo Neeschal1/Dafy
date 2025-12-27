@@ -18,3 +18,8 @@ class SignupSerializers(serializers.ModelSerializer):
     def create(self, validated_data):
         new_user = create_user(validated_data)
         return new_user
+    
+class LoginSerializers(serializers.Serializer):
+    Email = serializers.EmailField()
+    Password = serializers.CharField()
+    

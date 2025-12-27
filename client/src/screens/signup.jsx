@@ -15,13 +15,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import scaleFontSize from "../utils/responsivefonts";
 import { useNavigation } from "@react-navigation/native";
-import Signup_an_account from "../api/auth";
+import Signup_an_account from "../api/signupauth";
 
 const screenheight = Dimensions.get("window").height;
 const screenwidth = Dimensions.get("window").width;
 
-const Signup = () => {
-  const navigation = useNavigation();
+const Signup = ({navigation}) => {
 
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -41,7 +40,7 @@ const Signup = () => {
       Alert.alert("Success", "Account Created!");
       navigation.navigate("Login");
     } catch (err) {
-      console.log("SIGNUP ERROR →", err);
+      console.log("SIGNUP ERROR", err);
       const message =
         err.email?.[0] || err.username?.[0] || err.error || "Signup failed";
 
@@ -248,7 +247,8 @@ const Signup = () => {
 
               {/* Sign Up Button */}
               <TouchableOpacity
-                onPress={handleSignup}
+                // onPress={handleSignup}
+                onPress={()=>{navigation.navigate("Products")}}
                 style={{ marginTop: screenheight * 0.03 }}
               >
                 <LinearGradient
