@@ -11,6 +11,8 @@ import {
   Alert,
 } from "react-native";
 import React, { useState } from "react";
+import { SignInWithPopup } from 'firebase/auth'
+import { auth, googleauth } from '../firebase.config'
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import scaleFontSize from "../utils/responsivefonts";
@@ -22,6 +24,16 @@ const screenwidth = Dimensions.get("window").width;
 const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const continuewithgoogle = async () => {
+    try {
+        const result = await SignInWithPopup(auth, googleauth)
+        const user = result.user
+        alert(`Welcome, ${user.dispayName}`)
+    } catch (error) {
+        alert(error.message)
+    }
+  }
 
   const handleLogin = async () => {
     try{
@@ -220,6 +232,7 @@ const Login = ({navigation}) => {
               {/* Social Login Buttons */}
               <View style={{ gap: screenheight * 0.015, marginTop: screenheight * 0.03 }}>
                 <TouchableOpacity
+                onPress={continuewithgoogle}
                   style={{
                     paddingVertical: screenheight * 0.015,
                     borderWidth: 1,
