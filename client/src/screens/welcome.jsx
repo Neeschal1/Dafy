@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import LottieView from "lottie-react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import scaleFontSize from "../utils/responsivefonts";
+import { useNavigation } from "@react-navigation/native";
 
 const animation = require("../assets/lottie/shopping girl.json");
 
@@ -18,6 +19,7 @@ const screenheight = Dimensions.get("window").height;
 const screenwidth = Dimensions.get("window").width;
 
 const Welcome = () => {
+  const navigation = useNavigation();
   const [exitModalVisible, setExitModalVisible] = useState(false);
 
   useEffect(() => {
@@ -42,9 +44,18 @@ const Welcome = () => {
         justifyContent: "space-evenly",
         marginBottom: 20,
       }}
+
+      className="bg-background"
     >
       {/* Header + Lottie */}
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginBottom: screenheight * 0.15 }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: screenheight * 0.15,
+        }}
+      >
         <View
           style={{
             flexDirection: "row",
@@ -99,7 +110,7 @@ const Welcome = () => {
             Treasures!
           </Text>
 
-          <TouchableOpacity onPress={() => console.log("Navigate to login")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
             <LinearGradient
               colors={["#f6aa1c", "#f86624"]}
               start={{ x: 0, y: 0 }}
@@ -129,7 +140,6 @@ const Welcome = () => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-        <Text className="text-3xl text-red-700">Hi</Text>
 
         {/* Footer */}
         <View
@@ -174,7 +184,7 @@ const Welcome = () => {
               elevation: 10,
             }}
           >
-            <View style={{alignItems: 'center',}}>
+            <View style={{ alignItems: "center" }}>
               <Text
                 style={{
                   fontSize: scaleFontSize(20),

@@ -1,6 +1,6 @@
 import { StatusBar, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Welcome from "../src/screens/welcome";
+import Stacknavigation from '../src/constants/stacknavigation'
 import { customFonts } from "../src/utils/fonts";
 import { useFonts } from "expo-font";
 import '../global.css'
@@ -19,7 +19,7 @@ const Index = () => {
           padding: 20,
         }}
       >
-        <Welcome />
+        <Stacknavigation />
       </View>
     </>
   );

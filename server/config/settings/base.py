@@ -46,7 +46,7 @@ TEMPLATES = [
 
 
 # WSGI
-WSGI_APPLICATION = 'server.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Auth Password
