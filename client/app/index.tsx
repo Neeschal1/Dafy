@@ -3,6 +3,7 @@ import React from "react";
 import Welcome from "../src/screens/welcome";
 import { customFonts } from "../src/utils/fonts";
 import { useFonts } from "expo-font";
+import '../global.css'
 
 const Index = () => {
   const [fontsLoaded] = useFonts(customFonts);

@@ -129,6 +129,7 @@ const Welcome = () => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
+        <Text className="text-3xl text-red-700">Hi</Text>
 
         {/* Footer */}
         <View
