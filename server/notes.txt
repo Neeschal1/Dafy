@@ -1,0 +1,1 @@
+uvicorn config.asgi:application --reload
