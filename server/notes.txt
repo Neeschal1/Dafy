@@ -1,2 +1,3 @@
 uvicorn config.asgi:application --reload
 docker build -t neeschal1/dafy .
+first_name is the fullname of my user model
