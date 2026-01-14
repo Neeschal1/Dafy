@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     
     # installed packages
     'rest_framework',
+    # 'drf-yasg',
     
     # installed apps
     'apps.accounts',
