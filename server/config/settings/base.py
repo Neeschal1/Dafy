@@ -3,6 +3,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Installed Apps
 INSTALLED_APPS = [
+    # default installed items
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -11,6 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # installed packages
+    'rest_framework',
     
     # installed apps
     'apps.accounts',
@@ -19,6 +21,9 @@ INSTALLED_APPS = [
 
 # Middlewares
 MIDDLEWARE = [
+    # manually added middlewares
+    
+    # default middlewares
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,6 +52,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
+
+# Rest framework initializations
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
