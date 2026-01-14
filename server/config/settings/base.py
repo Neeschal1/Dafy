@@ -9,6 +9,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # installed packages
+    
+    # installed apps
+    'apps.accounts',
+    'apps.products',
 ]
 
 # Middlewares
