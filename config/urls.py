@@ -1,9 +1,28 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from .views import defaultscreen
+from rest_framework.permissions import IsAdminUser, AllowAny
+from drf_yasg.views import get_schema_view  # type: ignore
+from drf_yasg import openapi  # type: ignore
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Dafy Backend API Docs",
+        default_version="v1",
+        description="API documentation for Dafy, an e-commerce mobile application.",
+    ),
+    public=True,
+    permission_classes=(IsAdminUser,),
+    authentication_classes=(SessionAuthentication, BasicAuthentication),
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', defaultscreen, name='defaultscreen'),
-    path('accounts/', include('apps.accounts.api.urls'))
+    path("admin/", admin.site.urls),
+    re_path(
+        r"^docs/$", schema_view.with_ui("swagger", cache_timeout=0), name="swagger-ui"
+    ),
+    re_path(r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="redoc"),
+    path("", defaultscreen, name="defaultscreen"),
+    path("accounts/", include("apps.accounts.api.urls")),
 ]

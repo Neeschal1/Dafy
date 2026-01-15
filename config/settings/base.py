@@ -13,7 +13,7 @@ INSTALLED_APPS = [
     
     # installed packages
     'rest_framework',
-    # 'drf-yasg',
+    'drf_yasg',
     
     # installed apps
     'apps.accounts',
@@ -23,6 +23,7 @@ INSTALLED_APPS = [
 # Middlewares
 MIDDLEWARE = [
     # manually added middlewares
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     
     # default middlewares
     'django.middleware.security.SecurityMiddleware',
@@ -61,6 +62,9 @@ REST_FRAMEWORK = {
     ],
 }
 
+# Static storage backend
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -68,4 +72,8 @@ USE_I18N = True
 USE_TZ = True
 
 # Static Files
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
