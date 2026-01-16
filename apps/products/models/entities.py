@@ -15,6 +15,8 @@ class Product(models.Model):
     Seller_Address = models.TextField()
     Price = models.PositiveIntegerField(default=10)
     Bought_Date = models.TimeField()
+    Created_Date = models.DateTimeField(auto_now_add=True)
+    Updated_Date = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.Product_Name
