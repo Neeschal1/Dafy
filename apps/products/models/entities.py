@@ -15,6 +15,7 @@ class Product(models.Model):
     Seller_Address = models.TextField()
     Price = models.PositiveIntegerField(default=10)
     Bought_Date = models.TimeField()
+    
     def __str__(self):
         return self.Product_Name
     
