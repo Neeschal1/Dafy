@@ -16,7 +16,8 @@ ROOT_URLCONF = 'config.urls'
 ALLOWED_HOSTS = ['*']
 
 # Web server gateway interface initialization
-WSGI_APPLICATION = 'config.wsgi.application'
+# WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application'
 
 # Default Database (Only while it is in developmental state)
 DATABASES = {

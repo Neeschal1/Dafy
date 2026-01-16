@@ -1,3 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
+from .choices import *
 
-# Create your models here.
+class Product(models.Model):
+    Product_Name = models.CharField(max_length=40)
+    Product_Category = models.CharField(max_length=3, choices=PRODUCT_CATEGORY_CHOICES)
+    Product_Description = models.TextField()
+    Image_one = models.URLField(blank=False)
+    Image_two = models.URLField(blank=False)
+    Image_three = models.URLField(blank=False)
+    Image_four = models.URLField()
+    Image_five = models.URLField()
+    Seller_Name = models.ForeignKey(User, on_delete=models.CASCADE)
+    Seller_Address = models.TextField()
+    Price = models.PositiveIntegerField(default=10)
+    Bought_Date = models.TimeField()
+    def __str__(self):
+        return self.Product_Name
+    
