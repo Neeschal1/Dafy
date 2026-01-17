@@ -70,3 +70,9 @@ class UserProfileSerializerReadView(APIView):
 
 
 # User Profile Delete View
+class UserProfileSerializerDeleteView(APIView):
+    permission_classes = [AllowAny]
+    def delete(self, request, pk):
+        user_profile = Userprofile.objects.get(pk=pk)
+        user_profile.delete()
+        return Response({"Message":f"{user_profile} data deleted."})
