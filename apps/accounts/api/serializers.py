@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-# User account serializers
+# User account create serializers
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -13,4 +13,8 @@ class UserSerializers(serializers.ModelSerializer):
             'password': {'required': True, 'write_only': True},
             'is_active': {'read_only': True},
         }
-        
+
+# User account login serializers   
+class UserLoginSerializers(serializers.Serializer):
+    Email = serializers.EmailField()
+    Password = serializers.CharField()

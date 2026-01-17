@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from ..services.signup import signup
+from ..services.login import login_account
 
 # User account create serializer's view
 class UserSerializersCreateView(APIView):
@@ -39,3 +40,11 @@ class UserSerializerDeleteView(APIView):
         user = User.objects.get(pk=pk)
         user.delete()
         return Response({"Message":"User's account successfully deleted."})
+    
+# User account login view
+class UserLoginSerializersView(APIView):
+    permission_classes=[AllowAny]
+    def post(self, request):
+        serializer = UserLoginSerializers(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return login_account(serializer)

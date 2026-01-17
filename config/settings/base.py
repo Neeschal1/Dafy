@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     # installed packages
     'rest_framework',
     'drf_yasg',
+    'rest_framework_simplejwt',
     
     # installed apps
     'apps.accounts',
@@ -62,6 +63,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 # Static storage backend

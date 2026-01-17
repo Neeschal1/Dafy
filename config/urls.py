@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
 from .views import defaultscreen
+from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView,)
 from rest_framework.permissions import IsAdminUser, AllowAny
 from drf_yasg.views import get_schema_view  # type: ignore
 from drf_yasg import openapi  # type: ignore
@@ -23,6 +24,10 @@ urlpatterns = [
     # For swagger documentations
     re_path(r"^docs/$", schema_view.with_ui("swagger", cache_timeout=0), name="swagger-ui"),
     re_path(r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="redoc"),
+    
+    # For jwt tokens
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
     # For whole applications
     path("", defaultscreen, name="defaultscreen"),
