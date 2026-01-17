@@ -26,8 +26,16 @@ class UserSeriaizerUpdateView(APIView):
 
 # User account serializer's read view
 class UserSerializerReadView(APIView):
-    permission_classes=[IsAuthenticated]
+    permission_classes=[AllowAny]
     def get(self, request, pk):
         user = User.objects.get(pk=pk)
         read_user = UserSerializers(user)
         return Response({"Message":"User's data fetched successfully.", "Data: ":read_user.data})
+
+# User account serializer's delete view
+class UserSerializerDeleteView(APIView):
+    permission_classes = [AllowAny]
+    def delete(self, request, pk):
+        user = User.objects.get(pk=pk)
+        user.delete()
+        return Response({"Message":"User's account successfully deleted."})
