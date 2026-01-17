@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.userprofile',
     'apps.chat',
+    'apps.payments',
 ]
 
 # Middlewares
