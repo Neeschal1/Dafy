@@ -15,8 +15,7 @@ ROOT_URLCONF = 'config.urls'
 # Allowed hosts to access this backend system
 ALLOWED_HOSTS = ['*']
 
-# Web server gateway interface initialization
-# WSGI_APPLICATION = 'config.wsgi.application'
+# Asynchronous server gateway interface initialization
 ASGI_APPLICATION = 'config.asgi.application'
 
 # Default Database (Only while it is in developmental state)

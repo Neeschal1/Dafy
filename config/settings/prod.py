@@ -15,17 +15,17 @@ ROOT_URLCONF = 'config.urls'
 # Allowed hosts to access this backend system
 ALLOWED_HOSTS = ['*']
 
-# Web server gateway interface initialization
-WSGI_APPLICATION = 'server.config.wsgi.application'
+# Asynchronous server gateway interface initialization
+ASGI_APPLICATION = 'config.asgi.application'
 
 # PostgreSQL Database (For production level)
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydatabase",
-        "USER": "mydatabaseuser",
-        "PASSWORD": "mypassword",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "ENGINE": Config.ENGINE,
+        "NAME": Config.NAME,
+        "USER": Config.USER,
+        "PASSWORD": Config.PASSWORD,
+        "HOST": Config.HOST,
+        "PORT": Config.PORT,
     }
 }
