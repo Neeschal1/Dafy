@@ -13,3 +13,8 @@ class Config:
     PASSWORD = os.getenv('PASSWORD')
     HOST = os.getenv('HOST')
     PORT = os.getenv('PORT')
+    
+    # API key detail for AI integration
+    GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+    MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
