@@ -25,3 +25,11 @@ class UserProfileSerializerUpdateView(APIView):
         update_profile.is_valid(raise_exception=True)
         update_profile.save()
         return Response({"Message":"Profile successfully updated.", "Updated Data":update_profile.data}, status=status.HTTP_200_OK)
+    
+# User Profile Read View
+class UserProfileSerializerReadView(APIView):
+    permission_classes=[AllowAny]
+    def get(self, request, pk):
+        user_profile = Userprofile.objects.get(pk=pk)
+        read_data = UserprofileSeriaizer(user_profile)
+        return Response({"Message":"Got the user's detail", "Data":read_data.data})
