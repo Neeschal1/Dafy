@@ -58,3 +58,11 @@ class ProductSerializersReadView(APIView):
                 "Data": user_product.data,
             }, status=status.HTTP_200_OK
         )
+        
+# Product Serializers View for deleting an existing product
+class ProductSerializersDeleteView(APIView):
+    permission_classes = [AllowAny]
+    def delete(self, request, pk):
+        prod = Product.objects.get(pk=pk)
+        prod.delete()
+        return Response({"Message":"Product deleted successfully."})
