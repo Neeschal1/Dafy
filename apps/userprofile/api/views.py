@@ -21,7 +21,7 @@ class UserprofileSeriaizerCreateView(APIView):
 
 # User Profile Update View
 class UserProfileSerializerUpdateView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def put(self, request, pk):
         user_profile = get_object_or_404(Userprofile, pk=pk)
@@ -47,7 +47,7 @@ class UserProfileSerializerUpdateView(APIView):
 
 # User Profile Read View
 class UserProfileSerializerReadView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, pk):
         user_profile = Userprofile.objects.get(pk=pk)
@@ -67,11 +67,11 @@ class UserProfileSerializerReadView(APIView):
                 "Data": read_data.data,
             }, status=status.HTTP_200_OK
         )
-
+        
 
 # User Profile Delete View
 class UserProfileSerializerDeleteView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     def delete(self, request, pk):
         user_profile = Userprofile.objects.get(pk=pk)
         user_profile.delete()
