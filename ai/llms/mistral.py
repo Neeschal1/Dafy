@@ -1,5 +1,6 @@
 from langchain.chat_models import init_chat_model
 from env_config import Config
+from rest_framework.response import Response
 
 mistral_api_key = Config.MISTRAL_API_KEY
 mistral_model_name = Config.MISTRAL_MODEL_NAME
@@ -11,4 +12,4 @@ def mistral_llm(response: str):
         model=mistral_model_name,
         model_provider=mistral_model_provider
     )
-    return model.invoke(response).content
+    return Response({"Message":model.invoke(response).content})
