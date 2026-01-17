@@ -2,5 +2,6 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('create/', ProductSerializersView.as_view(), name='ProductSerializersView')
+    path('create/', ProductSerializersCreateView.as_view(), name='ProductSerializersCreateView'),
+    path('update/<int:id>/', ProductSerializersUpdateView.as_view(), name='ProductSerializersUpdateView'),
 ]
