@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from ..services.signup import signup
 
-# User's account views
 # User account create serializer's view
 class UserSerializersCreateView(APIView):
     permission_classes = [AllowAny]
@@ -15,7 +14,7 @@ class UserSerializersCreateView(APIView):
         account.is_valid(raise_exception=True)
         return signup(account)
     
-# User Profile serializer's update view
+# User account serializer's update view
 class UserSeriaizerUpdateView(APIView):
     permission_classes = [IsAuthenticated]
     def put(self, request, pk):
@@ -23,7 +22,12 @@ class UserSeriaizerUpdateView(APIView):
         update_profile = UserSerializers(user, data=request.data)
         update_profile.is_valid(raise_exception=True)
         update_profile.save()
-        return Response({"Message":f"User's detail updated successfully!", "New data":update_profile.data})
+        return Response({"Message":"User's detail updated successfully!", "New data":update_profile.data})
 
-
-
+# User account serializer's read view
+class UserSerializerReadView(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self, request, pk):
+        user = User.objects.get(pk=pk)
+        read_user = UserSerializers(user)
+        return Response({"Message":"User's data fetched successfully.", "Data: ":read_user.data})
