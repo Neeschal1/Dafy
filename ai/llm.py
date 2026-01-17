@@ -15,22 +15,28 @@ mistral_model_name = Config.MISTRAL_MODEL_NAME
 mistral_model_provider = Config.MISTRAL_MODEL_PROVIDER
 
 # GROQ LLM
-groq_llm = init_chat_model(
-    api_key=groq_api_key, 
-    model=groq_model_name, 
-    model_provider=groq_model_provider
-)
+def groq_llm(response: str):
+    model = init_chat_model(
+        api_key=groq_api_key, 
+        model=groq_model_name, 
+        model_provider=groq_model_provider
+    )
+    return model.invoke(response).content
 
 # GOOGLE LLM
-google_llm = init_chat_model(
-    api_key = google_api_key,
-    model=google_model_name,
-    model_provider=google_model_provider
-)
+def google_llm(response: str):
+    model = init_chat_model(
+        api_key = google_api_key,
+        model=google_model_name,
+        model_provider=google_model_provider
+    )
+    return model.invoke(response).content
 
 # MISTRAL LLM
-mistral_llm = init_chat_model(
-    api_key = mistral_api_key,
-    model=mistral_model_name,
-    model_provider=mistral_model_provider
-)
+def mistral_llm(response: str):
+    model = init_chat_model(
+        api_key = mistral_api_key,
+        model=mistral_model_name,
+        model_provider=mistral_model_provider
+    )
+    return model.invoke(response).content
