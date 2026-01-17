@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     # installed apps
     'apps.accounts',
     'apps.products',
+    'apps.userprofile',
 ]
 
 # Middlewares
