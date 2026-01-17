@@ -27,5 +27,6 @@ urlpatterns = [
     # For whole applications
     path("", defaultscreen, name="defaultscreen"),
     path("accounts/", include("apps.accounts.api.urls")),
+    path("profile/", include("apps.userprofile.api.urls")),
     path("products/", include("apps.products.api.urls")),
 ]
