@@ -22,11 +22,12 @@ class ProductSerializersUpdateView(APIView):
         prod = get_object_or_404(Product, pk=pk)
         update_prod = ProductSerializers(prod, data=request.data)
         update_prod.is_valid(raise_exception=True)
+        update_prod.save()
         user = prod.Seller_Name
         return Response(
             {
                 "Response": {
-                    "Message": "Got the user's detail",
+                    "Message": "Product detail updated successfully.",
                 },
                 "User's personal detail": {
                     "Firstname": user.first_name,
