@@ -17,7 +17,7 @@ class ProductSerializersCreateView(APIView):
 
 # Product Serializers View for updating a new product
 class ProductSerializersUpdateView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     def put(self, request, pk):
         prod = get_object_or_404(Product, pk=pk)
         update_prod = ProductSerializers(prod, data=request.data)
@@ -38,3 +38,23 @@ class ProductSerializersUpdateView(APIView):
             }, status=status.HTTP_200_OK
         )
         
+# Product Serializers View for reading an existing product
+class ProductSerializersReadView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
+        prod = Product.objects.get(pk=pk)
+        user_product = ProductSerializers(prod)
+        user = prod.Seller_Name
+        return Response(
+            {
+                "Response": {
+                    "Message": "Got the user's detail",
+                },
+                "User's personal detail": {
+                    "Firstname": user.first_name,
+                    "Username": user.username,
+                    "Email": user.email,
+                },
+                "Data": user_product.data,
+            }, status=status.HTTP_200_OK
+        )
