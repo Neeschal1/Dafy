@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from ..services.products import create_a_new_product
 from rest_framework.response import Response
+from ai.semantic_search import selected_product
 from rest_framework import status
 
 # Product Serializers View for creating a new product
@@ -45,6 +46,7 @@ class ProductSerializersReadView(APIView):
         prod = Product.objects.get(pk=pk)
         user_product = ProductSerializers(prod)
         user = prod.Seller_Name
+        similar_products = selected_product(user_product.data['Product_Description'])
         return Response(
             {
                 "Response": {

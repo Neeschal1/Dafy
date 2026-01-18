@@ -30,6 +30,10 @@ class Config:
     MISTRAL_MODEL_PROVIDER = os.getenv('MISTRAL_MODEL_PROVIDER')
     
     
+    # Embeddings model
+    EMBEDDINGS_MODEL_NAME = os.getenv('EMBEDDINGS_MODEL_NAME')
+    
+    
     # Stripe Payment Gateway Integration Details
     STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
     STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
