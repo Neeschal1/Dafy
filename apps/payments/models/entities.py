@@ -7,6 +7,7 @@ class Payment(models.Model):
     Buyers_Username = models.CharField(max_length=30)
     Product_Name = models.CharField(max_length=30)
     Product_Description = models.TextField()
+    Product_Image = models.URLField()
     Product_Category = models.CharField(max_length=3)
     Price = models.PositiveIntegerField()
     Paid = models.BooleanField(default=True)
