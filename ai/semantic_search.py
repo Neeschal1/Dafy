@@ -29,7 +29,7 @@ def selected_product(about_product):
         indexed_details.append((index, detail))
         
     # Sorting each of them
-    sorted_data = sorted(indexed_details, key=lambda i: i[1], reverse=True)[:4]
+    sorted_data = sorted(indexed_details, key=lambda i: i[1], reverse=True)[1:4]
     
     # Similar Products
     for index in sorted_data:
