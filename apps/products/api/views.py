@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from ..services.products import create_a_new_product
 from rest_framework.response import Response
 from ai.semantic_search import selected_product
+from .pagination import *
 from rest_framework import status
 
 
