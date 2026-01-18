@@ -1,5 +1,7 @@
 from pathlib import Path
+from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
 
 # Installed Apps
 INSTALLED_APPS = [
@@ -25,6 +27,7 @@ INSTALLED_APPS = [
     'apps.payments',
 ]
 
+
 # Middlewares
 MIDDLEWARE = [
     # manually added middlewares
@@ -41,6 +44,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 # Templates included
 TEMPLATES = [{
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -53,6 +57,7 @@ TEMPLATES = [{
                 'django.contrib.messages.context_processors.messages',
         ]}}]
 
+
 # Passwords for authorization
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
@@ -60,6 +65,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
+
 
 # Rest framework initializations
 REST_FRAMEWORK = {
@@ -70,6 +76,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
 
 # CORS modifications
 CORS_ALLOW_ALL_ORIGINS = True
@@ -83,14 +90,26 @@ CORS_ALLOW_METHODS = (
     "PUT",
 )
 
+
+# JWT Setup
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True
+}
+
+
 # Static storage backend
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
 
 # Static Files
 STATIC_URL = "/static/"
