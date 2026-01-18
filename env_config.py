@@ -6,6 +6,7 @@ class Config:
     # Secret key of project
     SECRET_KEY = os.getenv('SECRET_KEY')
     
+    
     # Database details
     ENGINE = os.getenv('ENGINE')
     NAME = os.getenv('NAME')
@@ -13,6 +14,7 @@ class Config:
     PASSWORD = os.getenv('PASSWORD')
     HOST = os.getenv('HOST')
     PORT = os.getenv('PORT')
+    
     
     # API key detail for AI integration
     GROQ_API_KEY = os.getenv('GROQ_API_KEY')
@@ -26,3 +28,8 @@ class Config:
     MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
     MISTRAL_MODEL_NAME = os.getenv('MISTRAL_MODEL_NAME')
     MISTRAL_MODEL_PROVIDER = os.getenv('MISTRAL_MODEL_PROVIDER')
+    
+    
+    # Stripe Payment Gateway Integration Details
+    PUBLISHABLE_KEY = os.getenv('PUBLISHABLE_KEY')
+    SECRET_KEY = os.getenv('SECRET_KEY')

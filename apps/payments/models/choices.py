@@ -1,0 +1,17 @@
+PRODUCT_CATEGORY_CHOICES = (
+    ('ELE', 'Electronics'),
+    ('FAS', 'Fashion & Apparel'),
+    ('BEA', 'Beauty & Personal Care'),
+    ('HOM', 'Home & Living'),
+    ('GRO', 'Groceries & Essentials'),
+    ('BOO', 'Books & Stationery'),
+    ('SPO', 'Sports & Fitness'),
+    ('TOY', 'Toys & Games'),
+    ('HEA', 'Health & Wellness'),
+    ('AUT', 'Automotive'),
+    ('FUR', 'Furniture'),
+    ('JEW', 'Jewelry & Accessories'),
+    ('PET', 'Pet Supplies'),
+    ('OFF', 'Office Supplies'),
+    ('DIG', 'Digital Products'),
+)
