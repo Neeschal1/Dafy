@@ -7,20 +7,11 @@ from ..services.products import create_a_new_product
 from ..services.initialdetails import initial_details
 from ..services.images import product_images
 from ..services.seller import seller_detail
+from ..models.entities import Product
 from rest_framework.response import Response
 from ai.semantic_search import selected_product
 from .pagination import *
 from rest_framework import status
-
-
-# # Product Serializers View for creating a new product
-# class ProductSerializersCreateView(APIView):
-#     permission_classes = [IsAuthenticated]
-
-#     def post(self, request):
-#         prod = ProductSerializers(data=request.data)
-#         prod.is_valid(raise_exception=True)
-#         return create_a_new_product(prod)
 
 # Product Serializers View for creating a new product
 class ProductSerializersCreateView(APIView):
@@ -31,7 +22,6 @@ class ProductSerializersCreateView(APIView):
         if not username:
             return Response({"Message":"Expecting 'Username'."})
         return create_a_new_product(username)
-
 
 
 # Product Serializers View for initial product Details
