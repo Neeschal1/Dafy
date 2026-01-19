@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from ..services.products import create_a_new_product
+from ..services.initialdetails import initial_details
 from rest_framework.response import Response
 from ai.semantic_search import selected_product
 from .pagination import *
@@ -18,6 +19,14 @@ class ProductSerializersCreateView(APIView):
         prod = ProductSerializers(data=request.data)
         prod.is_valid(raise_exception=True)
         return create_a_new_product(prod)
+
+# Product Serializers View for initial product Details
+class InitialProductDetailSerializersView(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request):
+        detail = InitialProductDetailSerializers(data=request.data)
+        detail.is_valid(raise_exception=True)
+        return initial_details(detail)
 
 
 # Product Serializers View for updating a new product

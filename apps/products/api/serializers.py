@@ -6,4 +6,10 @@ class ProductSerializers(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
+# Serializer for initial details
+class InitialProductDetailSerializers(serializers.Serializer):
+    Product_Name = serializers.CharField()
+    Product_Category = serializers.CharField()
+    Product_Description = serializers.CharField()
         
