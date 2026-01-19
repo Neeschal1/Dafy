@@ -10,7 +10,7 @@ def product_images(image):
     imagefive = image.validated_data['Image_five']
     
     details = [imageone, imagetwo, imagethree, imagefour, imagefive]
-    cache.set(f"images_{cache_key}", details, timeout=600)
+    cache.set(f"images_{cache_key}", details, timeout=2000)
     
     return Response({"Response":{"Details":{
         "Initial Details":cache.get(cache_key),

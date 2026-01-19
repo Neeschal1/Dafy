@@ -14,7 +14,7 @@ class Product(models.Model):
     Seller_Name = models.ForeignKey(User, on_delete=models.CASCADE)
     Seller_Address = models.TextField()
     Price = models.PositiveIntegerField(default=10)
-    Bought_Date = models.TimeField()
+    Bought_Date = models.DateTimeField()
     Created_Date = models.DateTimeField(auto_now_add=True)
     Updated_Date = models.DateTimeField(auto_now=True)
     
