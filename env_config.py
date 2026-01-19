@@ -34,6 +34,10 @@ class Config:
     EMBEDDINGS_MODEL_NAME = os.getenv('EMBEDDINGS_MODEL_NAME')
     
     
+    # Pinecone API Key (For vector database)
+    PINECONE_API_KEY = os.getenv('PINECONE_API_KEY')
+    
+    
     # Stripe Payment Gateway Integration Details
     STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
     STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
