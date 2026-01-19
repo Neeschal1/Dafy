@@ -9,6 +9,7 @@ class ProductSerializers(serializers.ModelSerializer):
 
 # Serializer for initial details
 class InitialProductDetailSerializers(serializers.Serializer):
+    Username = serializers.CharField()
     Product_Name = serializers.CharField()
     Product_Category = serializers.CharField()
     Product_Description = serializers.CharField()

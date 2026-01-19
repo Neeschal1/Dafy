@@ -20,6 +20,7 @@ class ProductSerializersCreateView(APIView):
         prod.is_valid(raise_exception=True)
         return create_a_new_product(prod)
 
+
 # Product Serializers View for initial product Details
 class InitialProductDetailSerializersView(APIView):
     permission_classes = [AllowAny]
