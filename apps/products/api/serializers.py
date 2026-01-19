@@ -25,3 +25,9 @@ class ProductImagesDetailSerializers(serializers.Serializer):
     Image_four = serializers.URLField(required = False, allow_blank = True)
     Image_five = serializers.URLField(required = False, allow_blank = True)
         
+
+# Serializer for Seller's detail
+class ProductSellerDetailSerializers(serializers.Serializer):
+    Username = serializers.CharField()
+    Selling_Price = serializers.IntegerField()
+    Estimated_Bought_Date = serializers.DateTimeField()

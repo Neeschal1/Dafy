@@ -11,4 +11,5 @@ urlpatterns = [
     # Extras
     path('initial/', InitialProductDetailSerializersView.as_view(), name='InitialProductDetailSerializersView'),
     path('initial/images/', ProductImagesDetailSerializersView.as_view(), name='ProductImagesDetailSerializersView'),
+    path('initial/images/seller/', ProductSellerDetailSerializersView.as_view(), name='ProductSellerDetailSerializersView'),
 ]

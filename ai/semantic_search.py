@@ -5,8 +5,10 @@ from rest_framework.response import Response
 from env_config import Config
 
 # Model import and initialization
-Model = Config.EMBEDDINGS_MODEL_NAME
-embedding = HuggingFaceEmbeddings(model_name = Model)
+# Model = Config.EMBEDDINGS_MODEL_NAME
+# embedding = HuggingFaceEmbeddings(model_name = Model)
+
+embedding = 1
 
 
 def selected_product(about_product):

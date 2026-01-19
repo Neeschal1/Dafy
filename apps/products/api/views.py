@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from ..services.products import create_a_new_product
 from ..services.initialdetails import initial_details
 from ..services.images import product_images
+from ..services.seller import seller_detail
 from rest_framework.response import Response
 from ai.semantic_search import selected_product
 from .pagination import *
@@ -37,6 +38,14 @@ class ProductImagesDetailSerializersView(APIView):
         image = ProductImagesDetailSerializers(data=request.data)
         image.is_valid(raise_exception=True)
         return product_images(image)
+
+# Product's Seller Serializer view for seller's detail
+class ProductSellerDetailSerializersView(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request):
+        seller = ProductSellerDetailSerializers(data=request.data)
+        seller.is_valid(raise_exception=True)
+        return seller_detail(seller)
     
     
 # Product Serializers View for updating a new product
