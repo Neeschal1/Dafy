@@ -1,6 +1,10 @@
 from pathlib import Path
+from env_config import Config
 from datetime import timedelta
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+SECRET_KEY = Config.SECRET_KEY
 
 
 # Installed Apps

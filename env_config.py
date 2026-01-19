@@ -16,6 +16,10 @@ class Config:
     PORT = os.getenv('PORT')
     
     
+    # Celery details
+    CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+    
+    
     # API key detail for AI integration
     GROQ_API_KEY = os.getenv('GROQ_API_KEY')
     GROQ_MODEL_NAME = os.getenv('GROQ_MODEL_NAME')
