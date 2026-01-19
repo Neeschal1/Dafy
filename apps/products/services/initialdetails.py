@@ -10,6 +10,5 @@ def initial_details(detail):
     
     details = [name, category, description]
     cache.set(cache_key, details, timeout=2000)
-    
-    # return Response({"Message":{"Product Details":{"Product Name":name, "Product Category":category, "Product Description":description}}})
+
     return Response({"Message":cache.get(cache_key)})

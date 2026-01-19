@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from ..services.products import create_a_new_product
 from ..services.initialdetails import initial_details
+from ..services.images import product_images
 from rest_framework.response import Response
 from ai.semantic_search import selected_product
 from .pagination import *
@@ -29,7 +30,15 @@ class InitialProductDetailSerializersView(APIView):
         detail.is_valid(raise_exception=True)
         return initial_details(detail)
 
-
+# Product Images Serializer view for providing image details
+class ProductImagesDetailSerializersView(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request):
+        image = ProductImagesDetailSerializers(data=request.data)
+        image.is_valid(raise_exception=True)
+        return product_images(image)
+    
+    
 # Product Serializers View for updating a new product
 class ProductSerializersUpdateView(APIView):
     permission_classes = [IsAuthenticated]

@@ -9,5 +9,6 @@ urlpatterns = [
     path('delete/<int:pk>/', ProductSerializersDeleteView.as_view(), name='ProductSerializersDeleteView'),
     
     # Extras
-    path('initial/', InitialProductDetailSerializersView.as_view(), name='InitialProductDetailSerializersView')
+    path('initial/', InitialProductDetailSerializersView.as_view(), name='InitialProductDetailSerializersView'),
+    path('initial/images/', ProductImagesDetailSerializersView.as_view(), name='ProductImagesDetailSerializersView'),
 ]
