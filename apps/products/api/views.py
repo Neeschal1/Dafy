@@ -74,40 +74,40 @@ class ProductSerializersUpdateView(APIView):
         )
 
 
-# Product Serializers View for reading an existing product
-class ProductSerializersReadView(APIView):
-    permission_classes = [AllowAny]
+# # Product Serializers View for reading an existing product
+# class ProductSerializersReadView(APIView):
+#     permission_classes = [AllowAny]
 
-    def get(self, request, pk):
-        same_products = []
-        prod = Product.objects.get(pk=pk)
-        user_product = ProductSerializers(prod)
-        user = prod.Seller_Name
-        similar_products = selected_product(user_product.data["Product_Description"])
+#     def get(self, request, pk):
+#         same_products = []
+#         prod = Product.objects.get(pk=pk)
+#         user_product = ProductSerializers(prod)
+#         user = prod.Seller_Name
+#         similar_products = selected_product(user_product.data["Product_Description"])
 
-        for same in similar_products:
-            try:
-                same_prod = Product.objects.filter(Product_Description=same).first()
-                if same_prod:
-                    same_products.append(ProductSerializers(same_prod).data)
-            except Exception as e:
-                return Response(str(e))
+#         for same in similar_products:
+#             try:
+#                 same_prod = Product.objects.filter(Product_Description=same).first()
+#                 if same_prod:
+#                     same_products.append(ProductSerializers(same_prod).data)
+#             except Exception as e:
+#                 return Response(str(e))
 
-        return Response(
-            {
-                "Response": {
-                    "Message": "Got the user's detail",
-                },
-                "User's personal detail": {
-                    "Firstname": user.first_name,
-                    "Username": user.username,
-                    "Email": user.email,
-                },
-                "Data": user_product.data,
-                "Other Similar Products": same_products,
-            },
-            status=status.HTTP_200_OK,
-        )
+#         return Response(
+#             {
+#                 "Response": {
+#                     "Message": "Got the user's detail",
+#                 },
+#                 "User's personal detail": {
+#                     "Firstname": user.first_name,
+#                     "Username": user.username,
+#                     "Email": user.email,
+#                 },
+#                 "Data": user_product.data,
+#                 "Other Similar Products": same_products,
+#             },
+#             status=status.HTTP_200_OK,
+#         )
 
 
 # Product Serializers View for deleting an existing product
