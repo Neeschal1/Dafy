@@ -7,6 +7,7 @@ urlpatterns = [
     path('update/<int:pk>/', ProductSerializersUpdateView.as_view(),name='ProductSerializersUpdateView'),
     # path('read/<int:pk>/', ProductSerializersReadView.as_view(), name='ProductSerializersReadView'),
     path('delete/<int:pk>/', ProductSerializersDeleteView.as_view(), name='ProductSerializersDeleteView'),
+    path('all/', FetchAllProducts.as_view(), name='FetchAllProducts'),
     
     # Extras
     path('initial/', InitialProductDetailSerializersView.as_view(), name='InitialProductDetailSerializersView'),

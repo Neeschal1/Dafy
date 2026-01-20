@@ -10,8 +10,15 @@ from ..services.seller import seller_detail
 from ..models.entities import Product
 from rest_framework.response import Response
 from ai.semantic_search import selected_product
+from rest_framework import generics
 from .pagination import *
 from rest_framework import status
+
+
+# All Product serializer for viewing the products
+class FetchAllProducts(generics.ListAPIView):
+    queryset = Product.objects.all()
+    permission_classes = [AllowAny]
 
 # Product Serializers View for creating a new product
 class ProductSerializersCreateView(APIView):
