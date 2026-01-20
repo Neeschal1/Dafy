@@ -1,13 +1,9 @@
-from pinecone import Pinecone
+from pinecone import Pinecone 
 from env_config import Config
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings 
 from celery import shared_task
+from .pinecone import pinecone_setup
 from django.core.cache import cache
-
-# Initialize pinecone API key
-pc = Pinecone(api_key=Config.PINECONE_API_KEY)
-index = pc.Index("dafy")
-
 
 # Model import and initialization
 _embedding_model = None
@@ -23,24 +19,15 @@ def get_embedding_model():
 def initialize_embeddings(username, productname, productcategory, productdescription):
     
     embedding = get_embedding_model()
-    vector = embedding.embed_query(productdescription)
-    print(vector)
+    vectors = embedding.embed_query(productdescription)
+    print(vectors)
     
     # Temporary id
     temp_id = f"temp_{username}"
     
     # Store in pinecone
-    db = index.upsert(vectors=[{
-        "id": temp_id,
-        "values": vector,
-        "metadata": {
-            "product_name": productname,
-            "product_category": productcategory,
-            "username": username,
-            "status": "pending"
-        }
-    }])
+    db_data = pinecone_setup(temp_id, vectors, productname, productcategory, username)
     
-    print(db)
+    print(db_data)
     
-    return db
+    return db_data
