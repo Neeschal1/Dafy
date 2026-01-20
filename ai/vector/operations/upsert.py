@@ -1,12 +1,8 @@
-from pinecone import Pinecone
-from env_config import Config
-
-pc = Pinecone(api_key=Config.PINECONE_API_KEY)
-index = pc.Index(name="dafyecommerce")
-
+from ..setup import index
+from .fetch import fetch_products_vector
 
 def pinecone_setup(tempid, vectors, productname, productcategory, username):
-    db_details = index.upsert(
+    index.upsert(
         vectors=[
             {
                 "id": tempid,
@@ -20,10 +16,7 @@ def pinecone_setup(tempid, vectors, productname, productcategory, username):
             }
         ]
     )
+    
+    fetch_products_vector(tempid)
 
     return {"status": "success", "vector_id": tempid}
-
-
-def fetch_data_from_pinecone():
-    data = index.fetch()
-    return

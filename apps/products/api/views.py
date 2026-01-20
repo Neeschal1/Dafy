@@ -83,12 +83,12 @@ class ProductSerializersUpdateView(APIView):
 
 
 # # Product Serializers View for reading an existing product
-# class ProductSerializersReadView(APIView):
-#     permission_classes = [AllowAny]
+class ProductSerializersReadView(APIView):
+    permission_classes = [AllowAny]
 
-#     def get(self, request, pk):
-#         same_products = []
-#         prod = Product.objects.get(pk=pk)
+    def get(self, request, pk):
+        same_products = []
+        prod = Product.objects.get(pk=pk)
 #         user_product = ProductSerializers(prod)
 #         user = prod.Seller_Name
 #         similar_products = selected_product(user_product.data["Product_Description"])

@@ -2,7 +2,7 @@ from pinecone import Pinecone
 from env_config import Config
 from langchain_huggingface import HuggingFaceEmbeddings 
 from celery import shared_task
-from .pinecone import pinecone_setup
+from .vector.operations.upsert import pinecone_setup
 from django.core.cache import cache
 import random
 import string
