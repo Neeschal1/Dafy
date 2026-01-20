@@ -21,9 +21,9 @@ def create_a_new_product(username):
         return Response({"User Does not exists. Sorry :( "})
         
     product = Product.objects.create(
-        Product_Name=product_detail[0],
-        Product_Category=product_detail[1],
-        Product_Description=product_detail[2],
+        Product_Name=product_detail[1],
+        Product_Category=product_detail[2],
+        Product_Description=product_detail[3],
         Image_one=image_detail[0],
         Image_two=image_detail[1],
         Image_three=image_detail[2],
