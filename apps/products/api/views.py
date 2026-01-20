@@ -17,6 +17,7 @@ from rest_framework import status
 
 # All Product serializer for viewing the products
 class FetchAllProducts(generics.ListAPIView):
+    serializer_class = ProductSerializers
     queryset = Product.objects.all()
     permission_classes = [AllowAny]
 
