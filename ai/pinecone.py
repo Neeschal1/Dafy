@@ -16,4 +16,5 @@ def pinecone_setup(tempid, vectors, productname, productcategory, username):
                 "status": "pending"
             }}]
     )
+    
     return db_details
