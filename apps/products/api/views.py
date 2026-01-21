@@ -100,8 +100,59 @@ class ProductSerializersReadView(APIView):
             other_products.append(prods.Product_ID)
         
         similar_products = fetch_products_vector(selected_product, other_products)
-        # print("Other products: ", other_products)
-        return Response({"Otherproducts": other_products, "Similarproducts":similar_products})
+
+        for prod_id in similar_products:        
+            try:
+                same_prods = Product.objects.get(Product_ID = prod_id)
+            except Product.DoesNotExist:
+                return Response({"Message":"Product doesnot exists. Come... Visit soon to fetch more ones. Thank you!"})
+            same_products.append({
+                "Product Name": same_prods.Product_Name,
+                "Product Id": same_prods.Product_ID,
+                "Product Category": same_prods.Product_Category,
+                "Product Description": same_prods.Product_Description,
+                "Images":{
+                    "Image one": same_prods.Image_one,
+                    "Image two": same_prods.Image_two,
+                    "Image three": same_prods.Image_three,
+                    "Image four": same_prods.Image_four,
+                    "Image five": same_prods.Image_five,
+                },
+                "Other Detail": {
+                    "Seller name": user.first_name,
+                    "Price": same_prods.Price,
+                    "Product's bought date by the seller": same_prods.Bought_Date,
+                }
+            })
+        
+        return Response({"Message": {
+            "Your Selected Product": {
+                "Product Id": selected_product,
+                "Product Name": prod.Product_Name,
+                "Product Category": prod.Product_Category,
+                "Product Description": prod.Product_Description,
+                "Images":{
+                    "Image one": prod.Image_one,
+                    "Image two": prod.Image_two,
+                    "Image three": prod.Image_three,
+                    "Image four": prod.Image_four,
+                    "Image five": prod.Image_five,
+                },
+                "Other Detail": {
+                    "Seller name": user.first_name,
+                    "Price": prod.Price,
+                    "Product's bought date by the seller": prod.Bought_Date,
+                }
+            },
+           "Other similar products": same_products
+        }})
+        
+# Seller_Name = models.ForeignKey(User, on_delete=models.CASCADE)
+#     Seller_Address = models.TextField()
+#     Price = models.PositiveIntegerField(default=10)
+#     Bought_Date = models.DateTimeField()
+#     Created_Date = models.DateTimeField(auto_now_add=True)
+#     Updated_Date = models.DateTimeField(auto_now=True)
 
 #         for same in similar_products:
 #             try:
