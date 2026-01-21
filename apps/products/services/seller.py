@@ -7,12 +7,10 @@ def seller_detail(seller):
     cache_key = seller.validated_data["Username"]
     try:
         user = User.objects.get(username=cache_key)
-        print(user.pk)
     except User.DoesNotExist:
         return Response({"Message": "User doesnot exists. Sorry :("})
     try:
         profile = Userprofile.objects.get(Username=user)
-        print(f"Username: {profile}")
     except Userprofile.DoesNotExist:
         return Response({"Message": "User profile doesnot exists. Sorry :("})
     
