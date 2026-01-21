@@ -100,6 +100,8 @@ class ProductSerializersReadView(APIView):
             other_products.append(prods.Product_ID)
         
         similar_products = fetch_products_vector(selected_product, other_products)
+        # print("Other products: ", other_products)
+        return Response({"Otherproducts": other_products, "Similarproducts":similar_products})
 
 #         for same in similar_products:
 #             try:

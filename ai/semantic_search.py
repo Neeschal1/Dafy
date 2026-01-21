@@ -7,27 +7,27 @@ from env_config import Config
 embedding = 1
 
 
-def selected_product(about_product):
+def selected_product(selected, other):
     # For appending similar product's indexes and similar description's data
     indexed_details = []
     similar_products_description = []
     
-    try:
-        products = Product.objects.values_list("Product_Description", flat=True)
-    except Product.DoesNotExist:
-        return Response({"Message":"Product doesnot exists. Please try again later!"})
+    # try:
+    #     products = Product.objects.values_list("Product_Description", flat=True)
+    # except Product.DoesNotExist:
+    #     return Response({"Message":"Product doesnot exists. Please try again later!"})
     
     # Embeddings of both, particular description and whole product's description
-    whole_data_query = embedding.embed_documents(products)
-    single_data_query = embedding.embed_query(about_product)
+    # whole_data_query = embedding.embed_documents(products)
+    # single_data_query = embedding.embed_query(about_product)
     
     # Cosine similarity and indexing
-    data = cosine_similarity([single_data_query], whole_data_query)[0]
+    data = cosine_similarity(selected, other)[0]
     for index, detail in enumerate(data):
         indexed_details.append((index, detail))
         
     # Sorting each of them
-    sorted_data = sorted(indexed_details, key=lambda i: i[1], reverse=True)[1:4]
+    sorted_data = sorted(indexed_details, key=lambda i: i[1], reverse=True)[:2]
     
     # Similar Products
     for index in sorted_data:
