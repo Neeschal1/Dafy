@@ -1,5 +1,5 @@
 from ..setup import index
-from ...semantic_search import selected_product
+from ...semantic_search import selected_product_for_similarity
 
 def fetch_products_vector(selected_product, other_products):
     selected_product_response = index.fetch(ids=[selected_product])
@@ -13,8 +13,11 @@ def fetch_products_vector(selected_product, other_products):
         
     # print(f"Selected Product responses: {selected_product_response}")
     # print(f"Other Product responses: {other_product_response}")
-    print("Length of data: ", len(other_product_data),"Other Products Data:\n", other_product_data)
+        
+    selected_product_for_similarity(selected_product_data, other_product_data)
+    
+    print("Length of data: ", len(other_product_data),"Other Products Data:\n",other_product_data, "\n\n\n")
+    print("Length of selected data: ", len(selected_product_data),"Selected Products Data:\n", selected_product_data, "\n\n\n")
     return selected_product_data
 
 
-    # similar_products = selected_product(selected_product_data, other_product_data)
