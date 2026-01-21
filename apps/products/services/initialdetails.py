@@ -21,7 +21,7 @@ def initial_details(detail):
     
     if user:
         initialize_embeddings.delay(cache_key, name, category, description, temp_id)
-        details = [cache_key, name, category, description]
+        details = [cache_key, name, category, description, temp_id]
         cache.set(cache_key, details, timeout=2000)
         print(temp_id)
         print(temp_id)

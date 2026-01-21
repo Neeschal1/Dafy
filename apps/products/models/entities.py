@@ -4,6 +4,7 @@ from .choices import *
 
 class Product(models.Model):
     Product_Name = models.CharField(max_length=40)
+    Product_ID = models.CharField(max_length=10)
     Product_Category = models.CharField(max_length=3, choices=PRODUCT_CATEGORY_CHOICES)
     Product_Description = models.TextField()
     Image_one = models.URLField(blank=False)
@@ -19,5 +20,4 @@ class Product(models.Model):
     Updated_Date = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.Product_Name
-    
+        return f"{self.Product_Name} || {self.Product_ID}"
