@@ -9,7 +9,7 @@ from ..services.images import product_images
 from ..services.seller import seller_detail
 from ..models.entities import Product
 from rest_framework.response import Response
-from ai.semantic_search import selected_product
+from ai.vector.operations.fetch import fetch_products_vector
 from rest_framework import generics
 from .pagination import *
 from rest_framework import status
@@ -89,9 +89,17 @@ class ProductSerializersReadView(APIView):
     def get(self, request, pk):
         same_products = []
         prod = Product.objects.get(pk=pk)
-#         user_product = ProductSerializers(prod)
-#         user = prod.Seller_Name
-#         similar_products = selected_product(user_product.data["Product_Description"])
+        user_product = ProductSerializers(prod)
+        user = prod.Seller_Name
+        
+        selected_product = user_product.data["Product_ID"]
+        other_products = []
+        
+        all_products = Product.objects.all()
+        for prods in all_products:
+            other_products.append(prods.Product_ID)
+        
+        similar_products = fetch_products_vector(selected_product, other_products)
 
 #         for same in similar_products:
 #             try:
