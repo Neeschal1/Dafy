@@ -10,7 +10,7 @@ stripe.api_key = Config.STRIPE_SECRET_KEY
 
 
 class PaymentSerializersView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         paid = PaymentSerializers(data=request.data)

@@ -20,11 +20,11 @@ from rest_framework import status
 class FetchAllProducts(generics.ListAPIView):
     serializer_class = ProductSerializers
     queryset = Product.objects.all()
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 # Product Serializers View for creating a new product
 class ProductSerializersCreateView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         username = request.data.get('Username') or request.data.get('username')
@@ -35,7 +35,7 @@ class ProductSerializersCreateView(APIView):
 
 # Product Serializers View for initial product Details
 class InitialProductDetailSerializersView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         detail = InitialProductDetailSerializers(data=request.data)
         detail.is_valid(raise_exception=True)
@@ -43,7 +43,7 @@ class InitialProductDetailSerializersView(APIView):
 
 # Product Images Serializer view for providing image details
 class ProductImagesDetailSerializersView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         image = ProductImagesDetailSerializers(data=request.data)
         image.is_valid(raise_exception=True)
@@ -51,7 +51,7 @@ class ProductImagesDetailSerializersView(APIView):
 
 # Product's Seller Serializer view for seller's detail
 class ProductSellerDetailSerializersView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         seller = ProductSellerDetailSerializers(data=request.data)
         seller.is_valid(raise_exception=True)
@@ -85,7 +85,7 @@ class ProductSerializersUpdateView(APIView):
 
 # # Product Serializers View for reading an existing product
 class ProductSerializersReadView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     def get(self, request, pk):
         prod = Product.objects.get(pk=pk)
         user_product = ProductSerializers(prod)
@@ -103,7 +103,7 @@ class ProductSerializersReadView(APIView):
 
 # Product Serializers View for deleting an existing product
 class ProductSerializersDeleteView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def delete(self, request, pk):
         prod = Product.objects.get(pk=pk)

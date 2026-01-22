@@ -11,7 +11,7 @@ from rest_framework import status
 
 # User Profile Create View
 class UserprofileSeriaizerCreateView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         profile = UserprofileSeriaizer(data=request.data)
