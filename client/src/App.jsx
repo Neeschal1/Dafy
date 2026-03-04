@@ -8,7 +8,7 @@ import Signup from "./pages/signup";
 const App = () => {
   return (
     <Router>
-      <div className="flex w-full h-screen justify-center items-center flex-1 bg-[#D8D4FF]">
+      <div className="flex w-full h-screen justify-center items-center flex-1 bg-[#242424]">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
